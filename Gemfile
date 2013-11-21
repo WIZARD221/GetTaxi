@@ -2,9 +2,11 @@ source 'http://rubygems.org'
 
 
 gem 'haml'
+gem 'protected_attributes'
 
 group :development, :test do
-  gem 'rspec', '2.11.0'
+  gem 'rspec'
+  gem 'rspec-rails'
   gem "factory_girl_rails"
 end
 
