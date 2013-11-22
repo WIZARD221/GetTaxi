@@ -1,4 +1,6 @@
 class Metric < ActiveRecord::Base
+	belongs_to :driver
+	
 	validates :name,  presence: true
 	validates :value, presence: true
  	validates :type, presence: true
