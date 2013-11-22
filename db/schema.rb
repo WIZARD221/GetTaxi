@@ -13,7 +13,8 @@
 
 ActiveRecord::Schema.define(version: 20131121200512) do
 
-  create_table "drivers", force: true do |t|
+  create_table "drivers", id: false, force: true do |t|
+    t.integer  "id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

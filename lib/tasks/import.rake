@@ -1,24 +1,37 @@
-require '.\metric'
-
 namespace :import do
-  
   require 'json'
   
   desc "import data from files to database"
   
-  task :json, [:path] do |t,args|
-      file = File.open(args.path)
-      file.each do |line|
-        metricHash = JSON.parse(line)
-        newMetric = Metric.new
-        newMetric.name = metricHash["n"]
-        newMetric.value = metricHash["v"]
-        newMetric.type = metricHash["t"]
-        newMetric.longitude = metricHash["lon"]
-        newMetric.latitude = metricHash["lat"]
-        newMetric.time_stamp = metricHash["ts"]
-        puts newMetric
-      end
+  task :json, [:path] => :environment do |t,args|
+       
+     file = File.open(args.path)
+     file.each do |line|
+       metricHash = JSON.parse(line)
+       metric = Metric.new
+       metric.name = metricHash["n"]
+       puts metric.name
+       metric.value = metricHash["v"]
+       puts metric.value
+       metric.metric_type = metricHash["t"]
+       puts metric.metric_type
+       metric.longitude = metricHash["lon"]
+       puts metric.longitude
+       metric.latitude = metricHash["lat"]
+       puts metric.latitude
+       metric.time_stamp = metricHash["ts"]
+       puts metric.time_stamp
+       
+       driverId  = metricHash["driver_id"]
+       driver = Driver.new
+       driver.id = driverId
+       
+       if Driver.exists?(:id => driverId)
+         driver = Driver.find(driverId)
+       end
+       driver.metrics << metric
+       driver.save
+     end
   end
   
   task :raw=> :environment do

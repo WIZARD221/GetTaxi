@@ -1,0 +1,12 @@
+%h3 GetTaxiiiiiiiiiii
+#taxi-box
+  %table#driver-table
+    %thead
+      %th Driver Id
+    %tbody
+      - render @drivers
+  %table#metrics-table
+    %thead
+      %th Metric Name
+    %tbody
+#map-canvas 

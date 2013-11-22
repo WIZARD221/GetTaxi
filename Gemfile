@@ -1,8 +1,9 @@
 source 'http://rubygems.org'
 
-
+gem 'bootstrap-sass'
 gem 'haml'
 gem 'protected_attributes'
+gem 'composite_primary_keys'
 
 group :development, :test do
   gem 'rspec'

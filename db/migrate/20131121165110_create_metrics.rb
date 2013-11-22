@@ -1,6 +1,6 @@
 class CreateMetrics < ActiveRecord::Migration
   def change
-    create_table :metrics do |t|
+    create_table :metrics  do |t|
       t.belongs_to :driver
       t.integer :driver_id
       t.string :name
